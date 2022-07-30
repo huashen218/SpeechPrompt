@@ -72,41 +72,11 @@ class TransformerDecoderPrompt(TransformerDecoderPromptBase):
         self.prompt_dropout = Dropout(p=0.1)
 
 
-        ##### HUA: Add Linear Verbalizer. We designed three options: 
-        #       i) one-layer linear verbalizer without bias term; 
-        #       ii) one-layer linear verbalizer with bias; 
-        #       iii) two-layer linear verbalizer.
-
-                # ===== <i> ===== #
+        ###### Linear Verbalizer ######
         self.prompt_verbalizer_dropout = Dropout(p=0.2)
-
-
-        # self.prompt_linear_verbalizer = torch.nn.Linear(104, 104, bias=False)
         self.prompt_linear_verbalizer = torch.nn.Linear(104, 104, bias=False)
-
-
-                # ===== <ii> ===== #
-        # self.prompt_linear_verbalizer = torch.nn.Linear(104, 104)
-
-        #          # ===== <iii> ===== #
-        # self.prompt_linear_verbalizer = torch.nn.Sequential(
-        #     torch.nn.Linear(104, 128, bias=False,),
-        #     torch.nn.ReLU(),
-        #     torch.nn.Linear(128, 104, bias=False,),
-        # )
-
-        # ===== <temperature to sharp the distribution> ===== #
-        self.temperature = 1   # default = 1 0.2
-        # self.temperature = 2   # default = 1      Dropout AFTER verbalizer:  t = 1, p = 0.1 -> 0.9130;  t = 2, p = 0.1 -> 0.9143, t=2, p=0.2 -> 0.9146381045115223; t =2, p = 0.5 -> 0.9104186952288218
-
-
-        ### IC Hubert: t = 2, p =0.2,
-        # ===== <save output vector control for analysis> ===== #
-        self.save_vectors = False
-        self.OUT_DIR = "/home/ec2-user/workspace/projects/jsalt/SpeechPrompt/ulm_prompt/analysis_outputs/output_projection_20220623.npz"
+        self.temperature = 1
         
-
-
 
     def forward(
         self,
@@ -401,36 +371,20 @@ class TransformerDecoderPrompt(TransformerDecoderPromptBase):
 
 
 
-    # ###### OLD deprecated ######
-    # def output_layer(self, features):
-    #     """Project features to  vocabulary size."""
-    #     if self.adaptive_softmax is None:
-    #         # project back to size of vocabulary
-    #         return self.output_projection(features)
-    #     else:
-    #         return features
-
-
-
     def output_layer(self, features): 
         """Project features to  vocabulary size."""
         if self.adaptive_softmax is None:
+
             # project back to size of vocabulary
             output_projection = self.output_projection(features)
-            # add prompt_linear_verbalizer with temperature
 
-            # output_projection = self.prompt_verbalizer_dropout(output_projection)
-            out = self.prompt_linear_verbalizer(output_projection) ### out = torch.Size([32, 81, 104])
+            # add prompt_linear_verbalizer with dropout and temperature 
+            out = self.prompt_linear_verbalizer(output_projection)
             out = self.prompt_verbalizer_dropout(out)
-            
             out = out / self.temperature
-            # save vectors for analysis
-            if self.save_vectors:
-                np.savez(self.OUT_DIR, 
-                        output_projection=output_projection.detach().cpu().numpy(), 
-                        linear_verbalizer=out.detach().cpu().numpy())
 
             return out
+
         else:
             return features
 
