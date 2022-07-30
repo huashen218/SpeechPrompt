@@ -172,6 +172,8 @@ def main(cfg: FairseqConfig) -> None:
 
         # train for one epoch
         valid_losses, should_stop = train(cfg, trainer, task, epoch_itr)
+        # #### HUA ###
+        # should_stop = False
         if should_stop:
             break
 
@@ -284,7 +286,8 @@ def train(cfg: DictConfig, trainer: Trainer, task: tasks.FairseqTask, epoch_itr)
 
         end_of_epoch = not itr.has_next()
         valid_losses, should_stop = validate_and_save(cfg, trainer, task, epoch_itr, valid_subsets, end_of_epoch)
-
+        # #### HUA ###
+        # should_stop = False
         if should_stop:
             break
 

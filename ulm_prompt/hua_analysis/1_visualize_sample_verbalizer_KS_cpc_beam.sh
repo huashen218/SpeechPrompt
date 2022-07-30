@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=7 python 1_visualize_verbalizers.py --prompt_task IC --unit_model hubert100 --model_date 20220718_verbalizer --sample_date 20220718_verbalizer

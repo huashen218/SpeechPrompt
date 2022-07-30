@@ -1,5 +1,6 @@
 import json
 import math
+import numpy as np
 from ast import arg
 from dataclasses import dataclass, field
 from lib2to3.pgen2 import token
@@ -69,6 +70,8 @@ class TransformerDecoderPrompt(TransformerDecoderPromptBase):
         self.prefix_prompt_length = prefix_prompt_length
         self.infix_prompt_length = infix_prompt_length
         self.prompt_dropout = Dropout(p=0.1)
+
+
 
     def forward(
         self,
@@ -361,6 +364,9 @@ class TransformerDecoderPrompt(TransformerDecoderPromptBase):
         else:
             return x, {"attn": [attn], "inner_states": inner_states}
 
+
+
+    ###### OLD deprecated ######
     def output_layer(self, features):
         """Project features to  vocabulary size."""
         if self.adaptive_softmax is None:
@@ -368,6 +374,7 @@ class TransformerDecoderPrompt(TransformerDecoderPromptBase):
             return self.output_projection(features)
         else:
             return features
+
 
     def buffered_future_mask(self, tensor):
         dim = tensor.size(0)

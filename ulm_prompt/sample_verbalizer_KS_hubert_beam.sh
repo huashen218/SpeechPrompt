@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=6 python sample_beam_verbalizer.py --prompt_task KS --unit_model hubert100 --model_date 20220726_verbalizer --sample_date 20220726_verbalizer

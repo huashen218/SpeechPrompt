@@ -134,3 +134,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+ulm_prompt/checkpoints
+ulm_prompt/pretrained_models
+ulm_prompt/logs
+ulm_prompt/samples
+abandoned/
+outputs/
+
+

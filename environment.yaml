@@ -1,4 +1,4 @@
-name: speech_prompt
+name: speech
 channels:
   - pytorch
   - conda-forge
