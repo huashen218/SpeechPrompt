@@ -1,15 +1,15 @@
 
 ### Summary of related files (prompt_linear_verbalizer):
-1. SpeechPrompt/ulm_prompt/train_verbalizer.py                   # train script for verbalizer
-2. SpeechPrompt/ulm_prompt/sample_beam_verbalizer.py             # sample script for verbalizer
-3. SpeechPrompt/ulm_prompt/prompt_lm_module_verbalizer/          # linear_verbalizer building modules
-4. SpeechPrompt/ulm_prompt/running_scripts                       # running scripts to start training  & inference
-5. SpeechPrompt/ulm_prompt/verbalizer_analysis/                  # some messy scripts for verbalizer analysis (not used for training / inference)
+1. `SpeechPrompt/ulm_prompt/train_verbalizer.py`                 
+2. `SpeechPrompt/ulm_prompt/sample_beam_verbalizer.py      `    
+3. `SpeechPrompt/ulm_prompt/prompt_lm_module_verbalizer/   `  
+4. `SpeechPrompt/ulm_prompt/running_scripts       `       
+5. `SpeechPrompt/ulm_prompt/verbalizer_analysis/   `            
 
 
 For more details of modification:
 
-1. SpeechPrompt/ulm_prompt/train_verbalizer.py   
+**1. SpeechPrompt/ulm_prompt/train_verbalizer.py**
 
 - changed input_args with `"--user-dir=./prompt_lm_module_verbalizer"`;
 - make `prompt_linear_verbalizer` parameters trainable;
@@ -20,11 +20,11 @@ For more details of modification:
 ```
 
 
-2. SpeechPrompt/ulm_prompt/sample_beam_verbalizer.py 
+**2. SpeechPrompt/ulm_prompt/sample_beam_verbalizer.py** 
 - changed input_args with `"--user-dir=./prompt_lm_module_verbalizer"`;
 
 
-3. SpeechPrompt/ulm_prompt/prompt_lm_module_verbalizer/
+**3. SpeechPrompt/ulm_prompt/prompt_lm_module_verbalizer/**
 - add `prompt_linear_verbalizer` in the `prompt_lm.py` file:
 
 ```
@@ -55,3 +55,10 @@ For more details of modification:
             return features
 
 ```
+
+**4. SpeechPrompt/ulm_prompt/running_scripts**                      
+- running scripts to start training  & inference
+
+
+**5. SpeechPrompt/ulm_prompt/verbalizer_analysis/**
+- some messy scripts for verbalizer analysis (not used for training / inference)
