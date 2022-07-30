@@ -1,1 +1,0 @@
-CUDA_VISIBLE_DEVICES=3 python sample_beam.py --prompt_task KS --unit_model hubert100 --model_date 20220726_baseline --sample_date 20220726_baseline

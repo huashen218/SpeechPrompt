@@ -1,1 +1,0 @@
-CUDA_VISIBLE_DEVICES=4 python sample_beam_verbalizer.py --prompt_task IC --unit_model cpc100 --model_date 20220727_verbalizer --sample_date 20220727_verbalizer

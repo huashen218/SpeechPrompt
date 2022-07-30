@@ -1,1 +1,0 @@
-CUDA_VISIBLE_DEVICES=5 python sample_sample.py --prompt_task KS --unit_model cpc100 --model_date 20220720_baseline --sample_date 20220720_baseline

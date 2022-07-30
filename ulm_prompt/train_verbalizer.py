@@ -93,7 +93,6 @@ def main(cfg: FairseqConfig) -> None:
         model = task.build_model(cfg.model)
     criterion = task.build_criterion(cfg.criterion)
 
-    ##### HUA ######
     ## make linear_verbalizer params trainable ###
     for param in model.decoder.prompt_linear_verbalizer.parameters():
         param.requires_grad = True

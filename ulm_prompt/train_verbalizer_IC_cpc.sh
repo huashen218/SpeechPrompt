@@ -1,1 +1,0 @@
-CUDA_VISIBLE_DEVICES=7 python train_verbalizer.py --date 20220727_verbalizer --prompt_task IC --unit_model cpc100 --prefix_prompt_length 6

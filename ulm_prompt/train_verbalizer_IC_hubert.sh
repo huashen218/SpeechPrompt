@@ -1,1 +1,0 @@
-CUDA_VISIBLE_DEVICES=4 python train_verbalizer.py --date 20220720_verbalizer --prompt_task IC --unit_model hubert100 --prefix_prompt_length 5

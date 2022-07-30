@@ -1,1 +1,0 @@
-CUDA_VISIBLE_DEVICES=1 python train.py --date 20220720_baseline --prompt_task KS --unit_model cpc100 --prefix_prompt_length 6
